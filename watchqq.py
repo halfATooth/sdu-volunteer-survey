@@ -1,7 +1,5 @@
 import time
 import pyscreenshot as ImageGrab
-from PIL import Image
-import matplotlib.pyplot as plt
 import cv2
 import numpy as np
 import pyautogui
@@ -47,18 +45,14 @@ def locate_msg_box(img):
 
 def launch():
   prev_img = None
-  for i in range(0, 5):
-    time.sleep(3)
+  for i in range(0, 100):
+    time.sleep(2)
     img = ImageGrab.grab(bbox=(x1, y1, x2, y2))
     curr_img_array = np.array(img)
     if prev_img is not None:
         difference = np.sum(np.abs(curr_img_array - prev_img))
         if difference > 100000:
             print(f"图像有变化，diff={difference}")
-            plt.imshow(prev_img)
-            plt.show()
-            plt.imshow(curr_img_array)
-            plt.show()
             x, y = locate_msg_box(img)
             if x > 0:
               msg = get_msg(x, y)
@@ -71,4 +65,5 @@ def launch():
             print("图像无变化")
     prev_img = curr_img_array.copy()
 
+time.sleep(5)
 launch()
