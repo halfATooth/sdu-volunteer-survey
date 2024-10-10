@@ -5,16 +5,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.edge.service import Service
 
 def submit(answer, url='https://www.wenjuan.com/s/UZBZJvp0zJ/', t=1):
-  # 预设答案
-  # answer = {
-  #   '姓名': 'xxx',
-  #   '学号': '202100300xxx',
-  #   '电话': '15812345678',
-  #   '手机': '15812345678',
-  #   '联系方式': '15812345678',
-  #   '班级': 'xxxx21.x',
-  #   '性别': '男',
-  # }
   # 自动答题数
   count = 0
   for times in range(t):
@@ -43,3 +33,5 @@ def submit(answer, url='https://www.wenjuan.com/s/UZBZJvp0zJ/', t=1):
         submit_btn.click()
         time.sleep(1)
         driver.quit()
+      else:
+        time.sleep(1000)
